@@ -1,0 +1,34 @@
+body {
+  background-image: linear-gradient(#202020, black);
+  margin: 0;
+}
+
+#top-buffer {
+}
+img {
+  opacity: 0.2;
+  width: 100%;
+  height: 100%;
+}
+
+#cartridge-container {
+  border-bottom: solid white 3px;
+}
+
+.cartridge {
+  overflow: hidden;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  border: solid white 3px;
+}
+
+.cartridge:hover {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  border: solid white 3px;
+  transition: 0.2s
+}
