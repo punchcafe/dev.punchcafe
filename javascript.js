@@ -1,15 +1,36 @@
 
 var wholeThing = () => {
 
+  //Have a global state of 'clicked'
+
   var bufferHeight = 50;
 
   var convertToCss = (int) => {
     return int.toString() + "px"
   }
 
+  var convertFromCss = (string) => {
+    return parseInt(string.slice(0,-2))
+  }
+
+// function for '64 cartridge animation
+  var clickDown = (event) => {
+    var element = event.currentTarget;
+    console.log(element.style);
+    console.log(event);
+    if (state == "down"){
+    element.style.marginTop = convertToCss(70);
+  } else {
+    element.style.marginTop = convertToCss(0);
+  }
+    console.log("***");
+    console.log(element.style.height)
+  }
 
 
 var cartridges = document.getElementsByClassName("cartridge");
+
+var cartridgesHolder = document.getElementsByClassName("cartridges")[0];
 
 var top_buffer = document.getElementById("top-buffer");
 top_buffer.style.height = convertToCss(bufferHeight)
@@ -24,7 +45,11 @@ var expandContents = () => {
 }
 
 for( i = 0; i < cartridges.length; i++){
+  cartridges[i].addEventListener("click", clickDown);
   cartridges[i].addEventListener("click", expandContents);
+}
+
+var insertCart = (cartridge) => {
 }
 
 
@@ -41,7 +66,6 @@ var slideFrame = (increment, element) => {
       }
     },1)
   } else if (increment == "down"){
-
     var incrementer = setInterval(() => {
       console.log("triggered")
       element.style.height = convertToCss(bufferHeight);
