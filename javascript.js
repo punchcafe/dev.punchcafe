@@ -1,4 +1,13 @@
 
+var pageState = {
+  activeCartridge : null,
+  insertDelay : 300,
+  bufferLimitTop : 10,
+  bufferLimitBottom : 700,
+  bufferIncrement : 1,
+  bufferFrameDelay : 0.4
+}
+
 var wholeThing = () => {
 
   //Have a global state of 'clicked'
@@ -16,14 +25,12 @@ var wholeThing = () => {
 // function for '64 cartridge animation
   var clickDown = (event) => {
     var element = event.currentTarget;
-    console.log(element.style);
-    console.log(event);
-    if (state == "down"){
+    if (state == "up"){
     element.style.marginTop = convertToCss(70);
   } else {
+    // Add click mechanism
     element.style.marginTop = convertToCss(0);
   }
-    console.log("***");
     console.log(element.style.height)
   }
 
@@ -35,13 +42,27 @@ var cartridgesHolder = document.getElementsByClassName("cartridges")[0];
 var top_buffer = document.getElementById("top-buffer");
 top_buffer.style.height = convertToCss(bufferHeight)
 
-state = "down"
+state = "up"
 
 var expandContents = () => {
   targetState = state == "down" ? "up" : "down"
-  slideFrame(targetState, top_buffer)
+  slideFrameTwo(targetState, top_buffer)
   state = targetState
   //top_buffer.style.height = top_buffer.style.height == "50px" ? "800px" : "50px";
+}
+
+var slideFrameTwo = (targetState, top_buffer) => {
+  var actions = (pageState.bufferLimitBottom - pageState.bufferLimitTop) / pageState.bufferIncrement;
+  var delay = pageState.insertDelay*1;
+  var increment = pageState.bufferIncrement * (targetState == "up" ? 1 : -1);
+  // make it go up or down
+  for(var i = 0; i < actions; i++){
+    setTimeout(()=>{
+      top_buffer.style.height = convertToCss(convertFromCss(top_buffer.style.height) + increment)
+    }, delay);
+    delay += pageState.bufferFrameDelay;
+  }
+  // calculate needed times before, then set that many timeouts with insertDelay
 }
 
 for( i = 0; i < cartridges.length; i++){
@@ -53,32 +74,6 @@ var insertCart = (cartridge) => {
 }
 
 
-var slideFrame = (increment, element) => {
-  base_pixels = 50
-  top_pixels = 800
-  if(increment == "up"){
-    console.log("up!")
-    var incrementer = setInterval(() => {
-      element.style.height = convertToCss(bufferHeight);
-      bufferHeight = bufferHeight -10
-      if(bufferHeight <= 10){
-        clearInterval(incrementer)
-      }
-    },1)
-  } else if (increment == "down"){
-    var incrementer = setInterval(() => {
-      console.log("triggered")
-      element.style.height = convertToCss(bufferHeight);
-      bufferHeight = bufferHeight +10
-      console.log("going down!")
-      console.log(element.style.height)
-      if(bufferHeight >= 800){
-        clearInterval(incrementer)
-      }
-    },1)
-
-  }
-}
 }
 
 window.onload = wholeThing
