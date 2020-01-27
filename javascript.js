@@ -63,8 +63,10 @@ var portfolioPage = () => {
 
   var clickDown = (event) => {
     // Provides '64 esque cartridge clicking
+    
     var element = event.currentTarget;
     if (pageState.cartridgeFrame == "up"){
+      var cartContainter = document.getElementsByClassName("cartridge-container")[0];
       // Insert cart
       var cumulativeDelay = 0;
       for(var i = 0; i < cartConfig.slideDist; i++){
@@ -76,6 +78,9 @@ var portfolioPage = () => {
         cumulativeDelay += cartConfig.slideFrameDelay;
       }
       cumulativeDelay += cartConfig.pause
+      setTimeout(() => {
+        cartContainter.className = "cartridge-container-active"
+      }, cumulativeDelay);
       for(var i = 0; i < cartConfig.clickDist; i++){
         setTimeout(()=>{
           element.style.marginTop = utilMethods.convertToCss(utilMethods.convertFromCss(element.style.marginTop) + 1);
@@ -85,7 +90,9 @@ var portfolioPage = () => {
     // element.style.marginTop = utilMethods.convertToCss(70);
     } else {
       // Add click mechanism
+      var cartContainter = document.getElementsByClassName("cartridge-container-active")[0];
       element.style.marginTop = utilMethods.convertToCss(0);
+      cartContainter.className = "cartridge-container"
     }
   }
 

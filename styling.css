@@ -10,11 +10,22 @@ img {
   width: 100%;
 }
 
-#cartridge-container {
+.cartridge-container {
+  padding-left: 300px;
   vertical-align: top;
   height: 200px;
-  border-bottom: solid white 3px;
+  border-bottom: solid rgb(34, 34, 34) 3px;
   overflow: hidden;
+  transition: 1s;
+}
+
+.cartridge-container-active {
+  padding-left: 300px;
+  vertical-align: top;
+  height: 200px;
+  border-bottom: solid white 2px;
+  overflow: hidden;
+  transition: 0.5s;
 }
 
 .cartridge_slide {
