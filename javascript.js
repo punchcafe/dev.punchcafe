@@ -1,7 +1,7 @@
 
 var pageState = {
   activeCartridge : null,
-  insertDelay : 800,
+  insertDelay : 900,
   ejectDelay : 200,
   bufferLimitTop : 10,
   bufferLimitBottom : 700,
@@ -36,34 +36,31 @@ var portfolioPage = () => {
 
   var top_buffer = document.getElementById("top-buffer");
   console.log(top_buffer)
-  top_buffer.style.height = utilMethods.convertToCss(bufferHeight)
-
+  //top_buffer.style.height = utilMethods.convertToCss(bufferHeight)
 
   var expandContents = () => {
-    targetState = pageState.cartridgeFrame == "down" ? "up" : "down"
-    slideFrame(targetState, top_buffer)
-    pageState.cartridgeFrame = targetState
-  }
-
-  var slideFrame = (targetState, top_buffer) => {
-    // Slide frame holding cartridges up or down the screen.
-    var actions = (pageState.bufferLimitBottom - pageState.bufferLimitTop) / pageState.bufferIncrement;
-    var delay = pageState.insertDelay*1;
-    var increment = pageState.bufferIncrement * (targetState == "up" ? 1 : -1);
-    // make it go up or down
-    for(var i = 0; i < actions; i++){
-
-      setTimeout(()=>{
-        top_buffer.style.height = utilMethods.convertToCss(utilMethods.convertFromCss(top_buffer.style.height) + increment)
-      }, delay);
-
-      delay += pageState.bufferFrameDelay;
-    }
+    currentState = pageState.cartridgeFrame
+    setTimeout(()=>{
+    if(currentState === "up"){
+        // TODO: make sure these are the same way around
+        var  topBuffer = document.getElementById("top-buffer");
+        var  contentsContainer = document.getElementById("contents-container");
+        topBuffer.id = "top-buffer-contracted";
+        contentsContainer.id = "contents-container-expanded";
+        pageState.cartridgeFrame = "down";
+      } else {
+        var  topBuffer = document.getElementById("top-buffer-contracted");
+        var contentsContainer = document.getElementById("contents-container-expanded");
+        topBuffer.id = "top-buffer";
+        contentsContainer.id = "contents-container";
+        pageState.cartridgeFrame = "up";
+      }
+    }, pageState.insertDelay)
   }
 
   var clickDown = (event) => {
     // Provides '64 esque cartridge clicking
-    
+
     var element = event.currentTarget;
     if (pageState.cartridgeFrame == "up"){
       var cartContainter = document.getElementsByClassName("cartridge-container")[0];

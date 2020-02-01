@@ -4,10 +4,35 @@ body {
 }
 
 #top-buffer {
+  transition: 1s;
+  height: 700px;
 }
+
+#top-buffer-contracted {
+  transition: 1s;
+  height: 0px;
+}
+
 img {
   opacity: 0.2;
   width: 100%;
+}
+
+#contents-container-expanded {
+  transition: 1s;
+  height: 700px;
+  background-color: #162026;
+  color: white;
+  font-size: 30px;
+}
+
+#contents-container {
+  opacity: 0.9;
+  overflow: hidden;
+  color: white;
+  font-size: 30px;
+  transition: 1s;
+  height: 0;
 }
 
 .cartridge-container {
