@@ -4,11 +4,20 @@ body {
 }
 
 #top-buffer {
+  overflow: hidden;
+  font-family: Verdana, sans-serif;
+  color: white;
+  overflow: hidden;
   transition: 1s;
-  height: 700px;
+  height: 800px;
 }
 
 #top-buffer-contracted {
+  overflow: hidden;
+  font-family: Verdana, sans-serif;
+  opacity: 0;
+  color: white;
+  transition: 1s;
   transition: 1s;
   height: 0px;
 }
@@ -20,17 +29,20 @@ img {
 
 #contents-container-expanded {
   transition: 1s;
-  height: 700px;
+  height: 800px;
   background-color: #162026;
   color: white;
-  font-size: 30px;
+  font-size: 14px;
+  opacity: 0.9;
+  font-family: 'OCR A Std', monospace;
 }
 
 #contents-container {
-  opacity: 0.9;
   overflow: hidden;
   color: white;
-  font-size: 30px;
+  font-size: 14px;
+  font-family: 'OCR A Std', monospace;
+  opacity: 0;
   transition: 1s;
   height: 0;
 }
