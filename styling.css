@@ -50,7 +50,7 @@ img {
 .cartridge-container {
   padding-left: 300px;
   vertical-align: top;
-  height: 200px;
+  height: 220px;
   border-bottom: solid rgb(34, 34, 34) 3px;
   overflow: hidden;
   transition: 1s;
@@ -59,16 +59,27 @@ img {
 .cartridge-container-active {
   padding-left: 300px;
   vertical-align: top;
-  height: 200px;
+  height: 220px;
   border-bottom: solid white 2px;
   overflow: hidden;
   transition: 0.5s;
 }
 
 .cartridge_slide {
+  transition: 0.15s;
   display: inline-block;
   width: 150px;
-  height: 300px;
+  height: 320px;
+  vertical-align: top;
+  margin: 20px;
+  padding-top: 20px;
+}
+
+.cartridge_slide:hover {
+  padding-top: 15px;
+  transition: 0.3s;
+  display: inline-block;
+  width: 150px;
   vertical-align: top;
   margin: 20px;
 }
