@@ -8,6 +8,7 @@ var pageState = {
   bufferIncrement : 1,
   bufferFrameDelay : 0.4,
   cartridgeFrame : "up",
+  // replace with cartrige config enum, set at only two points, flow start and flow end.
   isSliding: false,
   animationInProgress: false
 }
@@ -65,6 +66,8 @@ var portfolioPage = () => {
         topBuffer.id = "top-buffer";
         contentsContainer.id = "contents-container";
         pageState.cartridgeFrame = "up";
+        // finish ejecting sequence, set active cartridge to null
+        pageState.activeCartridge = null;
       }
     }, pageState.insertDelay)
   }
@@ -128,6 +131,13 @@ var portfolioPage = () => {
     if( pageState.animationInProgress ){
       return;
     }
+    if(pageState.activeCartridge != null){
+      if(pageState.activeCartridge != event.currentTarget){
+        return null;
+      }
+    }
+    pageState.activeCartridge = event.currentTarget;
+
     pageState.animationInProgress = true
     clickDown(event);
     expandContents();
