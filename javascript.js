@@ -8,7 +8,8 @@ var pageState = {
   bufferIncrement : 1,
   bufferFrameDelay : 0.4,
   cartridgeFrame : "up",
-  isSliding: false
+  isSliding: false,
+  animationInProgress: false
 }
 
 //TODO: use cartridge config for describing global state
@@ -46,6 +47,8 @@ var portfolioPage = () => {
   var cartridgesHolder = document.getElementsByClassName("cartridges")[0];
 
   var expandContents = () => {
+
+
     currentState = pageState.cartridgeFrame
     setTimeout(()=>{
     if(currentState === "up"){
@@ -121,9 +124,20 @@ var portfolioPage = () => {
     }
   }
 
+  var wrapperFunction = (event) => {
+    if( pageState.animationInProgress ){
+      return;
+    }
+    pageState.animationInProgress = true
+    clickDown(event);
+    expandContents();
+    setTimeout(() => {
+      pageState.animationInProgress = false
+    }, 1500)
+  }
+
   for( i = 0; i < cartridges.length; i++){
-    cartridges[i].addEventListener("click", clickDown);
-    cartridges[i].addEventListener("click", expandContents);
+    cartridges[i].addEventListener("click", wrapperFunction);
   }
 
 
