@@ -1,0 +1,36 @@
+body {
+  background-image: linear-gradient(#202020, black);
+  margin: 0;
+}
+.cartridge-row {
+  height: 150px;
+}
+
+.cartridge-container {
+  overflow: hidden;
+  display: inline-block;
+  height: 100%;
+  width: 100px;
+  margin: 10px;
+  border: 1px solid red;
+}
+
+.cartridge {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+/* temporary while I haven't implemented slide yet */
+/*
+.cartridge:hover {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 60px;
+  transition: 0.2s;
+}
+*/
+
+.cartridge img {
+  width: 100%
+}
