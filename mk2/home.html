@@ -4,7 +4,10 @@
 <script src="js/cartridges_panel_manager.js"></script>
 <script src="js/contents_panel_manager.js"></script>
 <script>
-  window.onload = () => initialiseCartridgePanelManager(document, globalPageState);
+  window.onload = () => {
+    var cartManager = initialiseCartridgePanelManager(document, globalPageState)
+    globalPageState.addListener(cartManager)
+  };
 </script>
 <link rel="stylesheet" type="text/css" href="styling.css">
 

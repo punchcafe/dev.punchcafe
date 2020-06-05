@@ -1,4 +1,5 @@
 function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
+
   var cartridgePanelManager = {
     domainElement: documentObjectModel.getElementById("cartridge-panel"),
     gps: globalPageState,
@@ -8,6 +9,7 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
     clickedCartridgeId: null,
 
     update: function updateBehaviour(){
+      console.log("I have been informed of the update to global state")
       //Do whatever updates are required. change class (not id) based on state
     },
 
@@ -25,9 +27,11 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
       var pause = 700
       var finalTimeCursor = utilMethods.moveElementDown(delayCursor+pause, cartridgeElement, 30, 50)
       setTimeout(() => {
+        //todo: remove this so that the whole method is done by a declarative global state method
         cartridgePanelManager.gps.activeCartridgeId = cartridgeElement.id
         // Unset the clicked cartridge so other cartridges may be pressed
         cartridgePanelManager.clickedCartridgeId = null
+        cartridgePanelManager.gps.setDisplayModeToProject()
       }, finalTimeCursor)
       //TODO: cartridge logic
     },
