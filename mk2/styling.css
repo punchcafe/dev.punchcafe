@@ -2,6 +2,27 @@ body {
   background-image: linear-gradient(#202020, black);
   margin: 0;
 }
+
+.landing-panel-landing-state{
+  height: 700px;
+}
+
+.cartridge-panel-original-state{
+  overflow: hidden;
+
+  height: 150px;
+}
+
+.cartridge-panel-landing-state{
+  height: 200px;
+}
+
+.cartridge-panel-project-state{
+  overflow: hidden;
+  transition: 0.5s;
+  height: 50px;
+}
+
 .cartridge-row {
   height: 150px;
 }

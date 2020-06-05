@@ -10,6 +10,14 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
 
     update: function updateBehaviour(){
       console.log("I have been informed of the update to global state")
+      console.log(this.gps.getDisplayMode())
+      switch(this.gps.getDisplayMode()){
+        case displayModes.LANDING:
+          break;
+        case displayModes.PROJECT:
+          this.domainElement.className = "cartridge-panel-project-state";
+          break;
+      }
       //Do whatever updates are required. change class (not id) based on state
     },
 
