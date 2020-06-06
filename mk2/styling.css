@@ -3,13 +3,16 @@ body {
   margin: 0;
 }
 
+#page-container{
+  overflow: hidden;
+}
 /*
 Landing panel styling
 */
 
 .landing-panel-original-state{
   color: white;
-  height: 700px;
+  height: 80%;
   overflow: hidden;
 }
 
@@ -35,7 +38,7 @@ Cartridge panel styling
 .cartridge-panel-original-state{
   overflow: hidden;
 
-  height: 150px;
+  height: 20%;
 }
 
 .cartridge-panel-landing-state{

@@ -5,4 +5,5 @@ window.onload = () => {
   globalPageState.addListener(landingManager)
   globalPageState.addListener(cartManager)
   globalPageState.addListener(contentsManager)
+  setInterval(()=>{document.getElementById("page-container").style.height = window.innerHeight},100)
 };
