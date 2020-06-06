@@ -28,13 +28,12 @@ var utilMethods = {
   },
 
   moveElementUp: function moveElementUp(startingDelay, element, distance, timeFrame){
-    var requiredTemportalIncrement = (distance*1.0/timeFrame)
+    var requiredTemportalIncrement = (timeFrame/distance)
     return this.moveMargin(startingDelay, element, -1, distance, requiredTemportalIncrement)
   },
 
   //moves up by increasing marginTop
   moveElementDown: function moveElementDown(startingDelay, element, distance, timeFrame){
-    console.log(element)
     var requiredTemportalIncrement = (timeFrame/distance)
     return this.moveMargin(startingDelay, element, 1, distance, requiredTemportalIncrement)
   }

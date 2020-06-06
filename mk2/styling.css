@@ -3,9 +3,34 @@ body {
   margin: 0;
 }
 
-.landing-panel-landing-state{
+/*
+Landing panel styling
+*/
+
+.landing-panel-original-state{
+  color: white;
   height: 700px;
+  overflow: hidden;
 }
+
+.landing-panel-landing-state{
+  color: white;
+  height: 700px;
+  transition: 1s;
+  overflow: hidden;
+}
+
+.landing-panel-project-state{
+  color: white;
+  height: 0px;
+  opacity: 0%;
+  transition: 1s;
+  overflow: hidden;
+}
+
+/*
+Cartridge panel styling
+*/
 
 .cartridge-panel-original-state{
   overflow: hidden;
@@ -20,7 +45,7 @@ body {
 .cartridge-panel-project-state{
   overflow: hidden;
   transition: 0.5s;
-  height: 50px;
+  height: 200px;
 }
 
 .cartridge-row {
@@ -42,16 +67,29 @@ body {
   margin-top: 10px;
 }
 
-/* temporary while I haven't implemented slide yet */
-/*
-.cartridge:hover {
-  position: relative;
-  margin-left: 10px;
-  margin-top: 60px;
-  transition: 0.2s;
-}
-*/
-
 .cartridge img {
   width: 100%
+}
+
+/*
+Contents panel styling
+*/
+
+.contents-panel-original-state{
+  overflow: hidden;
+
+  height: 0px;
+}
+
+.contents-panel-landing-state{
+  overflow: hidden;
+  transition: 1s;
+  height: 0px;
+}
+
+.contents-panel-project-state{
+  overflow: hidden;
+  transition: 0.5s;
+  height: 700px;
+  background-color: #6d828a;
 }
