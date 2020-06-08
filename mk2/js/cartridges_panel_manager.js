@@ -13,6 +13,7 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
       console.log(this.gps.getDisplayMode())
       switch(this.gps.getDisplayMode()){
         case displayModes.LANDING:
+          this.domainElement.className = "cartridge-panel-landing-state";
           break;
         case displayModes.PROJECT:
           this.domainElement.className = "cartridge-panel-project-state";

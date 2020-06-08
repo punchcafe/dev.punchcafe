@@ -18,7 +18,7 @@ Landing panel styling
 
 .landing-panel-landing-state{
   color: white;
-  height: 700px;
+  height: 80%;
   transition: 1s;
   overflow: hidden;
 }
@@ -36,22 +36,25 @@ Cartridge panel styling
 */
 
 .cartridge-panel-original-state{
-  overflow: hidden;
-
+  position: relative;
   height: 20%;
 }
 
 .cartridge-panel-landing-state{
-  height: 200px;
+  position: relative;
+  height: 20%;
 }
 
 .cartridge-panel-project-state{
-  overflow: hidden;
+  position: relative;
   transition: 0.5s;
-  height: 200px;
+  height: 5%;
 }
 
 .cartridge-row {
+  position: absolute;
+  overflow: hidden;
+  bottom: 0;
   height: 150px;
 }
 
@@ -93,6 +96,6 @@ Contents panel styling
 .contents-panel-project-state{
   overflow: hidden;
   transition: 0.5s;
-  height: 700px;
+  height: 95%;
   background-color: #6d828a;
 }
