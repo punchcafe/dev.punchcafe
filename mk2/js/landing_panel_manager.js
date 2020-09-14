@@ -10,6 +10,9 @@ function initialiseLandingPanelManager(documentObjectModel, globalPageState){
         case displayModes.PROJECT:
           this.domainElement.className = "landing-panel-project-state";
           break;
+        case displayModes.PROJECTS:
+          this.domainElement.className = "landing-panel-projects-state";
+          break;
       }
       //Do whatever updates are required. change class (not id) based on state
     },

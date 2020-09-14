@@ -31,9 +31,35 @@ Landing panel styling
   overflow: hidden;
 }
 
+.landing-panel-projects-state{
+  color: white;
+  height: 0px;
+  opacity: 0%;
+  transition: 1s;
+  overflow: hidden;
+}
+
 /*
 Cartridge panel styling
 */
+
+#show-all-projects-button {
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  border-radius: 15px;
+  z-index: 3;
+}
+
+#cartridge-row-relative-container{
+  position: relative;
+}
+
+/* Used for manipulating all cartridge positions at once */
+#cartridge-row-absolute-container{
+  position: absolute;
+  top: 0;
+}
 
 .cartridge-panel-original-state{
   position: relative;
@@ -48,13 +74,20 @@ Cartridge panel styling
 .cartridge-panel-project-state{
   position: relative;
   transition: 0.5s;
+  border-bottom: 3px solid white;
+  overflow: hidden;
   height: 5%;
 }
 
-.cartridge-row {
-  position: absolute;
+.cartridge-panel-projects-state{
+  position: relative;
+  transition: 0.5s;
   overflow: hidden;
-  bottom: 0;
+  height: 100%;
+}
+
+.cartridge-row {
+  overflow: hidden;
   height: 150px;
 }
 

@@ -24,19 +24,19 @@ var globalPageState = {
   },
 
   _updateDisplayModes: function(mode){
-    this._displayMode = mode
-    this._updateListeners()
+    globalPageState._displayMode = mode
+    globalPageState._updateListeners()
   },
 
   setDisplayModeToLanding: function(){
-    this._updateDisplayModes(displayModes.LANDING)
+    globalPageState._updateDisplayModes(displayModes.LANDING)
   },
 
   setDisplayModeToProject: function(){
-    this._updateDisplayModes(displayModes.PROJECT)
+    globalPageState._updateDisplayModes(displayModes.PROJECT)
   },
 
   setDisplayModeToProjects: function(){
-    this._updateDisplayModes(displayModes.PROJECTS)
+    globalPageState._updateDisplayModes(displayModes.PROJECTS)
   }
 }
