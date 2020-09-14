@@ -1,6 +1,7 @@
 function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
 
   var cartridgePanelManager = {
+
     domainElement: documentObjectModel.getElementById("cartridge-panel"),
     floatingCartBox: documentObjectModel.getElementById("cartridge-row-absolute-container"),
     gps: globalPageState,
@@ -81,11 +82,14 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
       if(cartridgePanelManager.gps.activeCartridgeId === null){
         // Lock other cartridges from firing
 
-        var delay = cartridgePanelManager.insertCartridgeWithCallback(cartridgeElement, cartridgePanelManager.gps.setDisplayModeToProject)
+        
         if(cartridgePanelManager.currentDisplayMode == displayModes.PROJECTS){
+          var initialDelay = utilMethods.moveElementDown(0, cartridgePanelManager.floatingCartBox, 650, 300);
+          var delay = cartridgePanelManager.insertCartridgeWithCallback(cartridgeElement, cartridgePanelManager.gps.setDisplayModeToProject, initialDelay)
           // WIP
           cartridgePanelManager.moveBufferToRow(1, delay);
         } else {
+          var delay = cartridgePanelManager.insertCartridgeWithCallback(cartridgeElement, cartridgePanelManager.gps.setDisplayModeToProject)
           cartridgePanelManager.moveBufferToRow(0, delay);
         }
       } else if(cartridgeElement.id === cartridgePanelManager.gps.activeCartridgeId) {
@@ -94,7 +98,7 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
       }
     },
 
-    insertCartridgeWithCallback: function (cartridgeElement, callBack){
+    insertCartridgeWithCallback: function (cartridgeElement, callBack, delay = 0){
       cartridgePanelManager.clickedCartridgeId = cartridgeElement.id
         var delayCursor = utilMethods.moveElementDown(0, cartridgeElement, 50, 300)
         var pause = 700
@@ -109,7 +113,7 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
         return finalTimeCursor;
     },
 
-    ejectCartridgeWithCallBack: function (cartridgeElement, callBack){
+    ejectCartridgeWithCallBack: function (cartridgeElement, callBack, delay = 0){
       cartridgePanelManager.clickedCartridgeId = cartridgeElement.id
       var delayCursor = utilMethods.moveElementUp(0, cartridgeElement, 80, 100)
       setTimeout(()=>{
