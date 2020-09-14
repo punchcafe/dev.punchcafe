@@ -7,6 +7,7 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
     gps: globalPageState,
     currentDisplayMode: null,
     previousDisplayMode: null,
+    idToRow: {},
 
     // TODO get dynamically
     _cartridgeSize: 152,
@@ -29,6 +30,7 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
         case displayModes.PROJECT:
         // introduce strategies if previous state = landing or previous state = projects
           //TODO: add method for ensuring offset is correct
+          // OFFset in time with whatever is the active cartrisge
           this.domainElement.className = "cartridge-panel-project-state";
           this.previousDisplayMode = this.currentDisplayMode;
           this.currentDisplayMode = displayModes.PROJECT;
@@ -84,9 +86,13 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
 
         
         if(cartridgePanelManager.currentDisplayMode == displayModes.PROJECTS){
-          var initialDelay = utilMethods.moveElementDown(0, cartridgePanelManager.floatingCartBox, 650, 300);
+          var row = cartridgePanelManager.idToRow[cartridgeElement.id]
+          console.log("window height")
+          console.log(window.height)
+          var initialDelay = utilMethods.moveElementDown(0, cartridgePanelManager.floatingCartBox, window.innerHeight - (152*row) -150, 500);
           var delay = cartridgePanelManager.insertCartridgeWithCallback(cartridgeElement, cartridgePanelManager.gps.setDisplayModeToProject, initialDelay)
           // WIP
+          // TODO: make this done by obeserver callback
           cartridgePanelManager.moveBufferToRow(1, delay);
         } else {
           var delay = cartridgePanelManager.insertCartridgeWithCallback(cartridgeElement, cartridgePanelManager.gps.setDisplayModeToProject)
@@ -140,6 +146,9 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
 
   // Set up listeners on container
 
+  var idToRow = {}
+
+
   var showAllCartsButton = documentObjectModel.getElementById("show-all-projects-button");
   console.log(showAllCartsButton)
   showAllCartsButton.addEventListener("click", cartridgePanelManager.clickOnShowAllProjectsEvent);
@@ -149,9 +158,14 @@ function initialiseCartridgePanelManager(documentObjectModel, globalPageState){
   for(var i = 0; i < rows.length; i++){
     var cartridgeContainers = rows[i].getElementsByClassName("cartridge-container");
     for(var j = 0; j < cartridgeContainers.length; j++){
+      idToRow[cartridgeContainers[j].getElementsByClassName("cartridge")[0].id] = i
       cartridgeContainers[j].getElementsByClassName("cartridge")[0].addEventListener("click", cartridgePanelManager.clickOnCartridgeEvent)
     }
   }
+
+  cartridgePanelManager.idToRow = idToRow
+
+  console.log(cartridgePanelManager.idToRow)
   // set cartrige listeners
   return cartridgePanelManager
 }
