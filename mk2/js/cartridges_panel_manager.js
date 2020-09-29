@@ -91,9 +91,9 @@ RULES:
         
         if(cartridgePanelManager.currentDisplayMode == displayModes.PROJECTS){
           var row = cartridgePanelManager.idToRow[cartridgeElement.id]
-          cartridgePanelManager.focusOnCartridge(cartridgeElement.id);
+          var cartridgeAlignDelay = cartridgePanelManager.focusOnCartridge(cartridgeElement.id);
           //var initialDelay = utilMethods.moveElementDown(0, cartridgePanelManager.floatingCartBox, window.innerHeight - (152*row) -150, 500);
-          var delay = cartridgePanelManager.insertCartridgeWithCallback(cartridgeElement, cartridgePanelManager.gps.setDisplayModeToProject, 500)
+          var delay = cartridgePanelManager.insertCartridgeWithCallback(cartridgeElement, cartridgePanelManager.gps.setDisplayModeToProject, cartridgeAlignDelay)
           // WIP
           // TODO: make this done by obeserver callback REMOVE THIS
           //cartridgePanelManager.moveBufferToRow(1, delay);
@@ -107,11 +107,12 @@ RULES:
         }
       } else if(cartridgeElement.id === cartridgePanelManager.gps.activeCartridgeId) {
         var delay = cartridgePanelManager.ejectCartridgeWithCallBack(cartridgeElement, cartridgePanelManager.gps.setDisplayModeToLanding)
-        cartridgePanelManager.resetBuffer();
       }
     },
 
     focusOnRow: function(targetRow, timeScale = 500, bottomPadding = 0){
+      // TODO: have option for when time scale is unspecified. currently we are working out the distance
+      // per t, but we could have a fixed velocity, where delay is calculated and returned dynamically
     
       // This approach is slightly better than incrementing because it means you'll have fixed functional destiantaions
 
@@ -120,6 +121,11 @@ RULES:
       var targetOffset = this._rowToOffset(targetRow) + bottomPadding
       var distance = targetOffset - currentOffset
       var distancePerT = timeScale === 0 ? distance : distance/timeScale
+
+      if(distance === 0){
+        // Doesn't need to move and will not cause delay
+        return 0;
+      }
 
       console.log(`current offset: ${currentOffset}`)
       console.log(`targetOffset: ${targetOffset}`)
@@ -143,7 +149,7 @@ RULES:
       // TODO: dyanmically return a time scale so that if you don't need to move a focus, it takes no time
       var targetRow = this.idToRow[cartridgeElement]
       console.log(this.focusOnRow)
-      this.focusOnRow(targetRow, 500, bottomPadding)
+      return this.focusOnRow(targetRow, 500, bottomPadding)
     },
 
     _rowToOffset: function(row){
@@ -153,7 +159,7 @@ RULES:
 
     insertCartridgeWithCallback: function (cartridgeElement, callBack, delay = 0){
       cartridgePanelManager.clickedCartridgeId = cartridgeElement.id
-        var delayCursor = utilMethods.moveElementDown(0, cartridgeElement, 50, 300)
+        var delayCursor = utilMethods.moveElementDown(delay, cartridgeElement, 50, 300)
         var pause = 700
         var finalTimeCursor = utilMethods.moveElementDown(delayCursor+pause, cartridgeElement, 30, 50)
         setTimeout(() => {
@@ -162,7 +168,7 @@ RULES:
           // Unset the clicked cartridge so other cartridges may be pressed
           cartridgePanelManager.clickedCartridgeId = null
           callBack()
-        }, finalTimeCursor)
+        }, finalTimeCursor + 500 /* allow time for cartridge to sit*/)
         return finalTimeCursor;
     },
 

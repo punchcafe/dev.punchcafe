@@ -78,6 +78,7 @@ Cartridge panel styling
   position: relative;
   border-bottom: 3px solid white;
   overflow: hidden;
+  transition: 0.5s;
   height: 5%;
 }
 
