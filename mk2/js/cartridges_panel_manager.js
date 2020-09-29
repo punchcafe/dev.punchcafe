@@ -148,7 +148,7 @@ RULES:
 
     _rowToOffset: function(row){
         console.log(row)
-        return ((this.totalNumberOfRows - row) * -100) +50;
+        return ((this.totalNumberOfRows - row) * -150) +120;
     },
 
     insertCartridgeWithCallback: function (cartridgeElement, callBack, delay = 0){

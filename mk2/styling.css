@@ -11,19 +11,22 @@ Landing panel styling
 */
 
 .landing-panel-original-state{
+  z-index: 0;
   color: white;
   height: 80%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .landing-panel-landing-state{
+  z-index: 0;
   color: white;
   height: 80%;
   transition: 1s;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .landing-panel-project-state{
+  z-index: 0;
   color: white;
   height: 0px;
   opacity: 0%;
@@ -32,11 +35,12 @@ Landing panel styling
 }
 
 .landing-panel-projects-state{
+  z-index: 0;
   color: white;
   height: 0px;
   opacity: 0%;
   transition: 1s;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /*
@@ -73,20 +77,21 @@ Cartridge panel styling
 .cartridge-panel-project-state{
   position: relative;
   border-bottom: 3px solid white;
+  overflow: hidden;
   height: 5%;
 }
 
 .cartridge-panel-projects-state{
   position: relative;
   transition: 0.5s;
-  overflow: hidden;
+  overflow: visible;
   height: 100%;
 }
 
 .cartridge-panel-projects-state #cartridge-row-absolute-container{
   position: absolute;
   transition: 0.5s;
-  /*overflow: hidden;*/
+  overflow: hidden;
   bottom: 90px;
 }
 
@@ -117,18 +122,21 @@ Contents panel styling
 */
 
 .contents-panel-original-state{
+  z-index: 1;
   overflow: hidden;
   transition: 1s;
   height: 0px;
 }
 
 .contents-panel-landing-state{
+  z-index: 1;
   overflow: hidden;
   transition: 1s;
   height: 0px;
 }
 
 .contents-panel-project-state{
+  z-index: 1;
   overflow: hidden;
   transition: 0.5s;
   height: 95%;
