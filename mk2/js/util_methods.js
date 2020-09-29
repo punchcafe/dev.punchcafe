@@ -9,6 +9,7 @@ var utilMethods = {
     }
     return result
   },
+
   //increment may be positive or negative
   //physiucal increment is 1 or -1
   // times is distance because hte physical increment is one
@@ -19,12 +20,22 @@ var utilMethods = {
     for(var i=0; i < times; i++){
       setTimeout(() => {
         element.style.marginTop = utilMethods.convertToCss(utilMethods.convertFromCss(element.style.marginTop) + physicalIncrement);
-        console.log("activTED")
       }, startingDelayCopy);
       startingDelayCopy += temporalIncrement
-      console.log("starting delay:"+startingDelayCopy)
     }
     return startingDelayCopy
+  },
+
+  collapseElementToHeight: function collapseElementToHeight(startingDelay, element, targetHeight, timeFrame){
+    var currentHeight = this.convertFromCss(element.style.height)
+    var difference = targetHeight - currentHeight;
+    var distanceEverySecond = difference/timeFrame
+    for(var i = 0; i < timeFrame; i++){
+      setTimeout(() => {
+        var h = this.convertFromCss(element.style.height)
+        element.style.height = this.convertToCss(h + distanceEverySecond);
+      }, i)
+    }
   },
 
   moveElementUp: function moveElementUp(startingDelay, element, distance, timeFrame){

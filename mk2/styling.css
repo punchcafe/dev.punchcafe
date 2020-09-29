@@ -53,14 +53,11 @@ Cartridge panel styling
   z-index: 3;
 }
 
-#cartridge-row-relative-container{
-  position: relative;
-}
 
 /* Used for manipulating all cartridge positions at once */
 #cartridge-row-absolute-container{
   position: absolute;
-  top: 0;
+  bottom: 0;
 }
 
 .cartridge-panel-original-state{
@@ -75,9 +72,7 @@ Cartridge panel styling
 
 .cartridge-panel-project-state{
   position: relative;
-  transition: 0.75s;
   border-bottom: 3px solid white;
-  overflow: hidden;
   height: 5%;
 }
 
@@ -86,6 +81,13 @@ Cartridge panel styling
   transition: 0.5s;
   overflow: hidden;
   height: 100%;
+}
+
+.cartridge-panel-projects-state #cartridge-row-absolute-container{
+  position: absolute;
+  transition: 0.5s;
+  /*overflow: hidden;*/
+  bottom: 90px;
 }
 
 .cartridge-row {
